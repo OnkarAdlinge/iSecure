@@ -1,0 +1,11 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <img src="img/ISecure.png" alt="Logo" class="logo" />
+    <h2>Login with Email ID</h2>
+    <form [formGroup]="loginForm">
+      <input type="text" formControlName="userEmail" placeholder="Enter your Email ID" />
+      <input type="text" formControlName="userPassword" placeholder="Enter your Password" />
+      <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+    </form>
+  </div>
+</div>
