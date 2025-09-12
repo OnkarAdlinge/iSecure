@@ -1,11 +1,33 @@
-<div class="login-wrapper">
+<div class="login-container">
   <div class="login-card">
-    <img src="img/ISecure.png" alt="Logo" class="logo" />
-    <h2>Login with Email ID</h2>
-    <form [formGroup]="loginForm">
-      <input type="text" formControlName="userEmail" placeholder="Enter your Email ID" />
-      <input type="text" formControlName="userPassword" placeholder="Enter your Password" />
-      <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+    <img src="img/profile.png" alt="Logo" class="logo" />
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login with your email ID</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Input -->
+      <div class="input-group">
+        <input type="email" formControlName="userEmail" placeholder="Email ID" />
+        @if (loginForm.get('userEmail')?.touched && loginForm.get('userEmail')?.invalid) {
+          <small class="error">Enter a valid email</small>
+        }
+      </div>
+
+      <!-- Password Input -->
+      <div class="input-group">
+        <input type="password" formControlName="userPassword" placeholder="Password" />
+        @if (loginForm.get('userPassword')?.touched && loginForm.get('userPassword')?.invalid) {
+          <small class="error">Password is required</small>
+        }
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
+
+    <div class="footer-links">
+      <a routerLink="/forgot-password">Forgot Password?</a>
+      <span>|</span>
+      <a routerLink="/signup">Sign Up</a>
+    </div>
   </div>
 </div>
