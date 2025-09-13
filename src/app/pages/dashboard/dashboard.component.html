@@ -35,7 +35,7 @@
 
                                 <div class="product-categories">
                                     <button mat-stroked-button *ngFor="let category of productCategories"
-                                        class="category-btn" [class.selected]="selectedProduct === category.name"
+                                        class="category-btn cursor-pointer" [class.selected]="selectedProduct === category.name"
                                         (click)="selectProduct(category.name)">
                                         <mat-icon>{{ category.icon }}</mat-icon>
                                         <span>{{ category.name }}</span>
