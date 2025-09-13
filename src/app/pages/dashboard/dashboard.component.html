@@ -1,101 +1,108 @@
 <div class="app-container">
     <!-- Header -->
-    <mat-toolbar class="header" color="primary">
-        <div class="header-left">
-            <button mat-icon-button (click)="switchToProductSelection()" *ngIf="currentView === 'premium-details'">
-                <mat-icon>arrow_back</mat-icon>
-            </button>
-            <span class="company-name" *ngIf="currentView === 'product-selection'">WELCOME SHUBHAM 👋</span>
-            <span class="product-name" *ngIf="currentView === 'premium-details'">{{ selectedProduct }}</span>
-        </div>
 
-        <div class="header-right">
-            <mat-form-field appearance="outline" class="search-field" *ngIf="currentView === 'product-selection'">
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput placeholder="Search for a product">
-            </mat-form-field>
-
-            <button mat-stroked-button color="primary" *ngIf="currentView === 'premium-details'">
-                Select a new product
-            </button>
-        </div>
-    </mat-toolbar>
 
     <!-- Product Selection View -->
     <div class="main-content" *ngIf="currentView === 'product-selection'">
-        <div class="content-wrapper">
-            <div class="left-panel">
-                <mat-card class="product-selection-card">
-                    <mat-card-header>
-                        <mat-card-title>
-                            Select a product to <span class="highlight">Generate the Quote</span>
-                        </mat-card-title>
-                    </mat-card-header>
-
-                    <mat-card-content>
-                        <div class="browse-section">
-                            <div class="section-title">
-                                <mat-icon><img src="img/shield.png" alt="shield" /></mat-icon>
-                                Browse product
-                            </div>
-
-                            <div class="product-categories">
-                                <button mat-stroked-button *ngFor="let category of productCategories"
-                                    class="category-btn" [class.selected]="selectedProduct === category.name"
-                                    (click)="selectProduct(category.name)">
-                                    <mat-icon>{{ category.icon }}</mat-icon>
-                                    {{ category.name }}
-                                </button>
-                            </div>
-
-                            <mat-form-field appearance="outline" class="product-select">
-                                <mat-label>Choose product</mat-label>
-                                <mat-select [(value)]="selectedProduct">
-                                    <mat-option *ngFor="let category of productCategories" [value]="category.name">
-                                        {{ category.name }}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-
-                            <button mat-flat-button color="primary" class="continue-btn" (click)="continueToQuote()">
-                                Continue
-                            </button>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-
-            <div class="right-panel">
-                <div class="recent-products-section">
-                    <div class="section-header">
-                        <mat-icon><img src="img/popular.png" alt="star" /></mat-icon>
-                        <span class="section-title">Your recently pitched products</span>
-                    </div>
-
-                    <div class="products-grid">
-                        <mat-card *ngFor="let product of recentProducts" class="product-card">
-                            <mat-card-content>
-                                <div class="product-info">
-                                    <div><img src="img/{{ product.icon }}.png" alt="{{ product.icon }}"></div>
-                                    <span class="product-type">{{ product.type }}</span>
-                                </div>
-                                <div class="col-9">
-                                    <button mat-flat-button color="primary" class="generate-quote-btn"
-                                        (click)="generateQuote(product)">
-                                        Generate Quote
-                                    </button>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
+        <div class="upper-section">
+            <mat-toolbar class="header pt-10" color="primary">
+                <div class="header-left col-8">
+                    <span class="employee-name" *ngIf="currentView === 'product-selection'">WELCOME SHUBHAM
+                        👋</span>
+                    <h2 class="text-white mt-20 ms-10 fs-24"> Select a product to <span class="highlight">Generate the
+                            Quote</span>
+                    </h2>
                 </div>
 
-                <div class="smart-suggest">
-                    <div class="suggest-content">
-                        <span class="suggest-title">Smart Suggest</span>
-                        <span class="suggest-subtitle">Get recommendations basis on your customer profile</span>
-                    </div>
-                    <mat-icon class="up-arrow"><img src="img/arrowupright.png" alt="arrow right" /></mat-icon>
+                <div class="header-right col-4">
+                    <mat-form-field appearance="outline" class="search-field col-12"
+                        *ngIf="currentView === 'product-selection'">
+                        <mat-icon matPrefix>search</mat-icon>
+                        <input matInput placeholder="Search for a product">
+                    </mat-form-field>
+
+                </div>
+            </mat-toolbar>
+            <div class="content-wrapper">
+                <div class="left-panel">
+                    <mat-card class="product-selection-card">
+                        <mat-card-content>
+                            <div class="browse-section">
+                                <div class="section-title">
+                                    <mat-icon><img src="img/shield.png" alt="shield" /></mat-icon>
+                                    Browse product
+                                </div>
+
+                                <div class="product-categories">
+                                    <button mat-stroked-button *ngFor="let category of productCategories"
+                                        class="category-btn" [class.selected]="selectedProduct === category.name"
+                                        (click)="selectProduct(category.name)">
+                                        <mat-icon>{{ category.icon }}</mat-icon>
+                                        <span>{{ category.name }}</span>
+                                    </button>
+                                </div>
+
+                                <mat-form-field appearance="outline" class="product-select choose-product">
+                                    <mat-label>Choose product</mat-label>
+                                    <mat-select [(value)]="selectedProduct">
+                                        <mat-option *ngFor="let category of productCategories" [value]="category.name">
+                                            {{ category.name }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <div class="col-9">
+                                    <button mat-flat-button color="primary" class="continue-btn cursor-pointer"
+                                        (click)="continueToQuote()">
+                                        Continue
+                                    </button>
+                                </div>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="right-panel">
+                    <mat-card class="product-selection-card">
+                        <mat-card-content>
+                            <div class="recent-products-section">
+                                <div class="section-header">
+                                    <mat-icon><img src="img/popular.png" alt="star" /></mat-icon>
+                                    <span class="section-title">Your recently pitched products</span>
+                                </div>
+
+                                <div class="products-grid">
+                                    <mat-card *ngFor="let product of recentProducts" class="product-card cursor-pointer">
+                                        <mat-card-content>
+                                            <div class="product-info">
+                                                <div><img src="img/{{ product.icon }}.png" alt="{{ product.icon }}">
+                                                </div>
+                                                <span class="product-type">{{ product.type }}</span>
+                                            </div>
+                                            <div class="col-9">
+                                                <button mat-flat-button color="primary" class="generate-quote-btn"
+                                                    (click)="generateQuote(product)">
+                                                    Generate Quote
+                                                </button>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+
+
+                            <div class="smart-suggest">
+                                <div class="suggest-content">
+                                    <span class="suggest-title">Smart Suggest</span>
+                                    <span class="suggest-subtitle">Get recommendations basis on your customer
+                                        profile</span>
+                                </div>
+                                <mat-icon class="up-arrow"><img src="img/arrowupright.png"
+                                        alt="arrow right" /></mat-icon>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
             </div>
         </div>

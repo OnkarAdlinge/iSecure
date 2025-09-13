@@ -38,7 +38,8 @@ interface PremiumOption {
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-   currentView = 'product-selection'; // 'product-selection' or 'premium-details'
+   currentView: 'product-selection' | 'premium-details' = 'product-selection';
+
   selectedProduct = '';
   
   recentProducts: Product[] = [
