@@ -1,1 +1,326 @@
-<p>dashboard works!</p>
+<div class="app-container">
+    <!-- Header -->
+    <mat-toolbar class="header" color="primary">
+        <div class="header-left">
+            <button mat-icon-button (click)="switchToProductSelection()" *ngIf="currentView === 'premium-details'">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <span class="company-name" *ngIf="currentView === 'product-selection'">WELCOME SHUBHAM 👋</span>
+            <span class="product-name" *ngIf="currentView === 'premium-details'">{{ selectedProduct }}</span>
+        </div>
+
+        <div class="header-right">
+            <mat-form-field appearance="outline" class="search-field" *ngIf="currentView === 'product-selection'">
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput placeholder="Search for a product">
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary" *ngIf="currentView === 'premium-details'">
+                Select a new product
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <!-- Product Selection View -->
+    <div class="main-content" *ngIf="currentView === 'product-selection'">
+        <div class="content-wrapper">
+            <div class="left-panel">
+                <mat-card class="product-selection-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Select a product to <span class="highlight">Generate the Quote</span>
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div class="browse-section">
+                            <div class="section-title">
+                                <mat-icon><img src="img/shield.png" alt="shield" /></mat-icon>
+                                Browse product
+                            </div>
+
+                            <div class="product-categories">
+                                <button mat-stroked-button *ngFor="let category of productCategories"
+                                    class="category-btn" [class.selected]="selectedProduct === category.name"
+                                    (click)="selectProduct(category.name)">
+                                    <mat-icon>{{ category.icon }}</mat-icon>
+                                    {{ category.name }}
+                                </button>
+                            </div>
+
+                            <mat-form-field appearance="outline" class="product-select">
+                                <mat-label>Choose product</mat-label>
+                                <mat-select [(value)]="selectedProduct">
+                                    <mat-option *ngFor="let category of productCategories" [value]="category.name">
+                                        {{ category.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <button mat-flat-button color="primary" class="continue-btn" (click)="continueToQuote()">
+                                Continue
+                            </button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="right-panel">
+                <div class="recent-products-section">
+                    <div class="section-header">
+                        <mat-icon><img src="img/popular.png" alt="star" /></mat-icon>
+                        <span class="section-title">Your recently pitched products</span>
+                    </div>
+
+                    <div class="products-grid">
+                        <mat-card *ngFor="let product of recentProducts" class="product-card">
+                            <mat-card-content>
+                                <div class="product-info">
+                                    <div><img src="img/{{ product.icon }}.png" alt="{{ product.icon }}"></div>
+                                    <span class="product-type">{{ product.type }}</span>
+                                </div>
+                                <div class="col-9">
+                                    <button mat-flat-button color="primary" class="generate-quote-btn"
+                                        (click)="generateQuote(product)">
+                                        Generate Quote
+                                    </button>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <div class="smart-suggest">
+                    <div class="suggest-content">
+                        <span class="suggest-title">Smart Suggest</span>
+                        <span class="suggest-subtitle">Get recommendations basis on your customer profile</span>
+                    </div>
+                    <mat-icon class="up-arrow"><img src="img/arrowupright.png" alt="arrow right" /></mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Quotes Section -->
+        <div class="recent-quotes-section">
+            <div class="section-header">
+                <h2>Recent Quotes</h2>
+                <span mat-button color="primary" class="title-text">View All</span>
+            </div>
+
+            <div class="quotes-grid">
+                <mat-card *ngFor="let quote of recentQuotes" class="quote-card">
+                    <mat-card-content>
+                        <div class="quote-header">
+                            <img src="img/user1.png" alt="Customer" class="customer-avatar">
+                            <div class="customer-info">
+                                <h4>{{ quote.customerName }}</h4>
+                                <span class="customer-id">{{ quote.id }}</span>
+                            </div>
+                        </div>
+                        <div class="quote-footer">
+                            <span class="quotes-count">{{ quote.quotesCount }} QUOTES</span>
+                            <mat-icon><span
+                                    class="recent-quotes-arrow cursor-pointer">keyboard_arrow_right</span></mat-icon>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Info Corner -->
+        <div class="info-corner">
+            <h2>Info Corner</h2>
+            <div class="info-cards">
+                <mat-card class="info-card">
+                    <mat-card-content>
+                        <mat-icon><img src="img/fileminus.png" alt="file" /></mat-icon>
+                        <div>
+                            <h4>Products Info</h4>
+                            <p>Get recommendations basis on your customer profile</p>
+                        </div>
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="info-card">
+                    <mat-card-content>
+                        <mat-icon><img src="img/barchart.png" alt="file" /></mat-icon>
+                        <div>
+                            <h4>Fund Reports</h4>
+                            <p>Get recommendations basis on your customer profile</p>
+                        </div>
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Details View -->
+    <div class="main-content" *ngIf="currentView === 'premium-details'">
+        <div class="premium-content">
+            <div class="left-panel">
+                <mat-card class="premium-card">
+                    <div class="sum-assured-section">
+                        <div class="sum-assured-header">
+                            <mat-icon>security</mat-icon>
+                            <span>Life cover of</span>
+                        </div>
+                        <h2 class="sum-assured-amount">{{ formatLargeNumber(sumAssured) }}</h2>
+
+                        <div class="coverage-details">
+                            <div class="age-info">
+                                <span class="age-label">40 Yr policy term till Age of 75</span>
+                            </div>
+
+                            <div class="coverage-pills">
+                                <span class="pill">25 L</span>
+                                <span class="pill">50 L</span>
+                                <span class="pill">75 L</span>
+                                <span class="pill active">1 Cr</span>
+                                <span class="pill">5 Cr</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefits-section">
+                        <h3>
+                            <mat-icon>add_circle</mat-icon>
+                            Add benefit riders
+                        </h3>
+
+                        <div class="benefit-item" *ngFor="let benefit of benefits">
+                            <div class="benefit-info">
+                                <mat-icon>{{ getBenefitIcon(benefit.name) }}</mat-icon>
+                                <span class="benefit-name">{{ benefit.name }}</span>
+                            </div>
+                            <div class="benefit-amount">
+                                ₹{{ benefit.amount }}{{ benefit.currency }}
+                                <button mat-icon-button color="primary">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button mat-flat-button color="primary" class="update-premium-btn">
+                        Update premium
+                    </button>
+                </mat-card>
+            </div>
+
+            <div class="right-panel">
+                <mat-card class="premium-options-card">
+                    <mat-card-header>
+                        <div class="premium-header">
+                            <mat-icon>diamond</mat-icon>
+                            <span>YOUR PREMIUM</span>
+                        </div>
+                        <mat-form-field appearance="outline" class="frequency-select">
+                            <mat-select value="Annually">
+                                <mat-option value="Annually">Annually</mat-option>
+                                <mat-option value="Monthly">Monthly</mat-option>
+                                <mat-option value="Quarterly">Quarterly</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div class="smart-recommendations">
+                            <mat-icon>psychology</mat-icon>
+                            <span>Smart recommendations</span>
+                        </div>
+
+                        <mat-radio-group [(ngModel)]="selectedPremium" class="premium-options">
+                            <div *ngFor="let option of premiumOptions" class="premium-option"
+                                [class.recommended]="option.recommended">
+                                <mat-radio-button [value]="option.years">
+                                    <div class="option-content">
+                                        <div class="option-left">
+                                            <div class="option-header">
+                                                <span class="years">Pay for {{ option.years }} years</span>
+                                                <span *ngIf="option.label" class="savings-label">{{ option.label
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="option-right">
+                                            <div class="amounts">
+                                                <span class="amount">{{ formatCurrency(option.amount) }}</span>
+                                                <span class="frequency">/Year</span>
+                                                <span class="total">Total: {{ formatCurrency(option.total) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+
+                        <div class="regular-pay-section">
+                            <span class="regular-pay-label">Regular pay (Up to 65 years of your age)</span>
+
+                            <div class="premium-option regular-option">
+                                <mat-radio-button [value]="30">
+                                    <div class="option-content">
+                                        <div class="option-left">
+                                            <span class="years">Pay for 30 years</span>
+                                        </div>
+                                        <div class="option-right">
+                                            <div class="amounts">
+                                                <span class="amount">₹16,674</span>
+                                                <span class="frequency">/Year</span>
+                                                <span class="total">Total: ₹6,63,240</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-radio-button>
+                            </div>
+                        </div>
+
+                        <div class="discounts-section">
+                            <h4>Available discounts (2)</h4>
+                            <div class="discount-chips">
+                                <mat-chip-set>
+                                    <mat-chip>Partner: 3% ✕</mat-chip>
+                                    <mat-chip>Website markup: 5% ✕</mat-chip>
+                                </mat-chip-set>
+                            </div>
+                        </div>
+
+                        <div class="story-section">
+                            <mat-icon>auto_stories</mat-icon>
+                            <div class="story-content">
+                                <span class="story-title">Story</span>
+                                <p class="story-text">
+                                    By paying ₹50,000 annually for 10 years (₹5,00,000 total), you could receive around
+                                    ₹15-20 lakhs after 30 years, depending on the returns.
+                                </p>
+                            </div>
+                            <button mat-icon-button>
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <div class="premium-summary">
+                    <div class="summary-content">
+                        <mat-icon>shield_moon</mat-icon>
+                        <div class="summary-details">
+                            <span class="summary-title">Your Premium</span>
+                            <span class="summary-amount">₹94,500/Yr</span>
+                            <span class="summary-subtitle">(incl. of GST)</span>
+                            <button mat-button class="view-details-btn">View details</button>
+                        </div>
+                    </div>
+                    <div class="summary-actions">
+                        <button mat-stroked-button>Share BI</button>
+                        <button mat-flat-button color="primary">
+                            <mat-icon>download</mat-icon>
+                            Download BI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

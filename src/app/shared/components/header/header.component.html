@@ -8,9 +8,9 @@
 
     <!-- User Menu -->
     <div class="user-menu me-10" [matMenuTriggerFor]="userMenu">
-        <img src="img/profile.png" class="user-profile-wrapper" alt="profile-image">
+        <img src="img/user.png" class="user-profile-wrapper" alt="profile-image" width="40" height="40">
         <div>
-            <div>{{ user?.userName }}</div>
+            <div><strong>{{ user?.userName }}</strong></div>
             <div> {{ user?.roleName }}</div>
         </div>
         <mat-icon>keyboard_arrow_down</mat-icon>
@@ -20,7 +20,8 @@
     <mat-menu #userMenu="matMenu" class="user-menu">
         <div class="mat-menu-user interactive-card">
             <div class="user-image-wrapper">
-                <img src="img/profile.png" alt="user Image" class="user-image-top" />
+                <img src="img/user.png" alt="user Image" class="user-image-top" width="40" height="40"/>
+                
             </div>
 
             <div class="user-info-wrapper">

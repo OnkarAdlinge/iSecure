@@ -13,7 +13,7 @@
 
       <div class="input-group">
         <i class="fa-solid fa-lock"></i>
-        <input type="password" formControlName="userPassword" placeholder="Password" />
+        <input type="password" formControlName="userPassword" placeholder="Password" minlength="3" maxlength="12" />
 
       </div>
       @if (loginForm.get('userPassword')?.touched && loginForm.get('userPassword')?.invalid) {
