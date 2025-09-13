@@ -5,7 +5,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const user = JSON.parse(sessionStorage.getItem('user') || '{}');
   // its just an example we can change this logic as per roles of the user present in db.
-  if (user?.role === 'sales representative' || user?.role === 'manager') {
+  if (user?.roleName === 'sales representative' || user?.roleName === 'manager') {
     return true;
   }
 

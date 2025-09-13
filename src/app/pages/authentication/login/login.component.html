@@ -1,33 +1,32 @@
-<div class="login-container">
-  <div class="login-card">
-    <img src="img/profile.png" alt="Logo" class="logo" />
-    <h2>Welcome Back</h2>
-    <p class="subtitle">Login with your email ID</p>
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>LOGIN</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <!-- Email Input -->
       <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
         <input type="email" formControlName="userEmail" placeholder="Email ID" />
-        @if (loginForm.get('userEmail')?.touched && loginForm.get('userEmail')?.invalid) {
-          <small class="error">Enter a valid email</small>
-        }
       </div>
+      @if (loginForm.get('userEmail')?.touched && loginForm.get('userEmail')?.invalid) {
+      <small class="error">Enter a valid email</small>
+      }
 
-      <!-- Password Input -->
       <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
         <input type="password" formControlName="userPassword" placeholder="Password" />
-        @if (loginForm.get('userPassword')?.touched && loginForm.get('userPassword')?.invalid) {
-          <small class="error">Password is required</small>
-        }
+
+      </div>
+      @if (loginForm.get('userPassword')?.touched && loginForm.get('userPassword')?.invalid) {
+      <small class="error">Password is required</small>
+      }
+
+      <div class="forgot">
+        <a href="#">Forgot your password?</a>
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button type="submit" class="btn" [disabled]="loginForm.invalid">Log in</button>
     </form>
 
-    <div class="footer-links">
-      <a routerLink="/forgot-password">Forgot Password?</a>
-      <span>|</span>
-      <a routerLink="/signup">Sign Up</a>
-    </div>
+
   </div>
 </div>

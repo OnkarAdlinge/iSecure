@@ -1,1 +1,36 @@
-<p>header works!</p>
+<mat-toolbar color="primary" class="header-toolbar">
+    <!-- Logo -->
+    <div class="logo">
+        <!-- logo for app if required -->
+        <!-- <img src="img/logo.png" alt="Logo" /> -->
+    </div>
+
+
+    <!-- User Menu -->
+    <div class="user-menu me-10" [matMenuTriggerFor]="userMenu">
+        <img src="img/profile.png" class="user-profile-wrapper" alt="profile-image">
+        <div>
+            <div>{{ user?.userName }}</div>
+            <div> {{ user?.roleName }}</div>
+        </div>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+
+
+    <mat-menu #userMenu="matMenu" class="user-menu">
+        <div class="mat-menu-user interactive-card">
+            <div class="user-image-wrapper">
+                <img src="img/profile.png" alt="user Image" class="user-image-top" />
+            </div>
+
+            <div class="user-info-wrapper">
+                <div class="user-name">{{ user?.userName }}</div>
+                <div class="user-info"><strong>Role:</strong> {{ user?.roleName }}</div>
+            </div>
+
+            <button type="button" mat-flat-button color="warn" class="logout-btn cursor-pointer" (click)="logout()">
+                Logout
+            </button>
+        </div>
+    </mat-menu>
+</mat-toolbar>
