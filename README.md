@@ -3,7 +3,7 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
 ## 🔗 Live Demo
-[ISecure on GitHub Pages](https://onkaradlinge.github.io/iSecure/#/)
+https://onkaradlinge.github.io/iSecure/#/
 
 ## ✨ Highlights
 - Clean architecture  
