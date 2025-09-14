@@ -2,6 +2,18 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
+## 🔗 Live Demo
+https://onkaradlinge.github.io/iSecure/#/
+
+## ✨ Highlights
+- Clean architecture  
+- Interceptors for request/response  
+- Global error handling  
+- AuthGuard implementation  
+- Interactive login page  
+- Reusable components  
+
+
 ## Development server
 
 To start a local development server, run:
