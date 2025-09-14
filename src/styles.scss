@@ -816,8 +816,11 @@ quill-editor {
   }
 }
 
+.cdk-overlay-pane{
+  background: white !important;
+}
 
-
+// media queries
 @media only screen and (max-width: 767px) {
   .footer-area {
     padding: 15px;

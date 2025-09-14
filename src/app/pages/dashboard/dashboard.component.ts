@@ -38,10 +38,10 @@ interface PremiumOption {
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-   currentView: 'product-selection' | 'premium-details' = 'product-selection';
+  currentView: 'product-selection' | 'premium-details' = 'product-selection';
+  searchValue: string = '';
+  selectedProduct: string = '';
 
-  selectedProduct = '';
-  
   recentProducts: Product[] = [
     { name: 'eTOUCH', type: 'Term', icon: 'etouch' },
     { name: 'ACE', type: 'PAR', icon: 'ace' },
@@ -127,9 +127,9 @@ export class DashboardComponent {
   }
 
   getBenefitIcon(benefitName: string): string {
-  if (benefitName.includes('disability')) return 'accessible';
-  if (benefitName.includes('illness')) return 'healing';
-  if (benefitName.includes('death')) return 'security';
-  return 'shield';
-}
+    if (benefitName.includes('disability')) return 'accessible';
+    if (benefitName.includes('illness')) return 'healing';
+    if (benefitName.includes('death')) return 'security';
+    return 'shield';
+  }
 }

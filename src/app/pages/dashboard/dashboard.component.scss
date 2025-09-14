@@ -34,10 +34,8 @@
 
       ::ng-deep {
         .mat-mdc-text-field-wrapper {
-          // temporary code
           background-color: white;
           border-radius: 8px;
-          border: 3px solid;
         }
 
         .mat-mdc-form-field-outline {
@@ -942,15 +940,30 @@
   font-size: 24px !important;
 }
 
+.clear-button {
+  background: transparent;
+  border: none;
+}
+
 :host ::ng-deep {
   .div.mat-mdc-select-panel {
     background: white !important;
   }
 
-  .choose-product{
-    .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix{
+  .choose-product {
+
+    .mdc-text-field--outlined .mat-mdc-form-field-infix,
+    .mdc-text-field--no-label .mat-mdc-form-field-infix {
       padding: 16px;
     }
+  }
+
+  .search-field .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+    border: none;
+  }
+
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+    border-color: #D4D4D4;
   }
 }
 

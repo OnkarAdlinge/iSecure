@@ -18,8 +18,15 @@
                     <mat-form-field appearance="outline" class="search-field col-12"
                         *ngIf="currentView === 'product-selection'">
                         <mat-icon matPrefix>search</mat-icon>
-                        <input matInput placeholder="Search for a product">
+
+                        <input matInput placeholder="Search for a product" [(ngModel)]="searchValue" #searchInput>
+
+                        <button *ngIf="searchValue" mat-icon-button matSuffix aria-label="Clear"
+                            (click)="searchValue=''; searchInput.value=''" class="clear-button cursor-pointer">
+                            <mat-icon>close</mat-icon>
+                        </button>
                     </mat-form-field>
+
 
                 </div>
             </mat-toolbar>
@@ -35,7 +42,8 @@
 
                                 <div class="product-categories">
                                     <button mat-stroked-button *ngFor="let category of productCategories"
-                                        class="category-btn cursor-pointer" [class.selected]="selectedProduct === category.name"
+                                        class="category-btn cursor-pointer"
+                                        [class.selected]="selectedProduct === category.name"
                                         (click)="selectProduct(category.name)">
                                         <mat-icon>{{ category.icon }}</mat-icon>
                                         <span>{{ category.name }}</span>
@@ -73,7 +81,8 @@
                                 </div>
 
                                 <div class="products-grid">
-                                    <mat-card *ngFor="let product of recentProducts" class="product-card cursor-pointer">
+                                    <mat-card *ngFor="let product of recentProducts"
+                                        class="product-card cursor-pointer">
                                         <mat-card-content>
                                             <div class="product-info">
                                                 <div><img src="img/{{ product.icon }}.png" alt="{{ product.icon }}">
@@ -81,7 +90,7 @@
                                                 <span class="product-type">{{ product.type }}</span>
                                             </div>
                                             <div class="col-9">
-                                                <button mat-flat-button color="primary" class="generate-quote-btn"
+                                                <button mat-flat-button color="primary" class="generate-quote-btn cursor-pointer"
                                                     (click)="generateQuote(product)">
                                                     Generate Quote
                                                 </button>
@@ -111,7 +120,7 @@
         <div class="recent-quotes-section">
             <div class="section-header">
                 <h2>Recent Quotes</h2>
-                <span mat-button color="primary" class="title-text">View All</span>
+                <span mat-button color="primary" class="title-text cursor-pointer">View All</span>
             </div>
 
             <div class="quotes-grid">
@@ -145,7 +154,7 @@
                             <h4>Products Info</h4>
                             <p>Get recommendations basis on your customer profile</p>
                         </div>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        <mat-icon class="cursor-pointer">keyboard_arrow_right</mat-icon>
                     </mat-card-content>
                 </mat-card>
 
@@ -156,7 +165,7 @@
                             <h4>Fund Reports</h4>
                             <p>Get recommendations basis on your customer profile</p>
                         </div>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        <mat-icon class="cursor-pointer">keyboard_arrow_right</mat-icon>
                     </mat-card-content>
                 </mat-card>
             </div>
