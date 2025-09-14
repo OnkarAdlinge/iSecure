@@ -1,16 +1,15 @@
 <div class="app-container">
     <!-- Header -->
 
-
     <!-- Product Selection View -->
     <div class="main-content" *ngIf="currentView === 'product-selection'">
         <div class="upper-section">
             <mat-toolbar class="header pt-10" color="primary">
                 <div class="header-left col-8">
-                    <span class="employee-name" *ngIf="currentView === 'product-selection'">WELCOME SHUBHAM
-                        👋</span>
-                    <h2 class="text-white mt-20 ms-10 fs-24"> Select a product to <span class="highlight">Generate the
-                            Quote</span>
+                    <span class="employee-name" *ngIf="currentView === 'product-selection'">WELCOME SHUBHAM 👋</span>
+                    <h2 class="text-white mt-20 ms-10 fs-24">
+                        Select a product to
+                        <span class="highlight">Generate the Quote</span>
                     </h2>
                 </div>
 
@@ -19,15 +18,13 @@
                         *ngIf="currentView === 'product-selection'">
                         <mat-icon matPrefix>search</mat-icon>
 
-                        <input matInput placeholder="Search for a product" [(ngModel)]="searchValue" #searchInput>
+                        <input matInput placeholder="Search for a product" [(ngModel)]="searchValue" #searchInput />
 
                         <button *ngIf="searchValue" mat-icon-button matSuffix aria-label="Clear"
-                            (click)="searchValue=''; searchInput.value=''" class="clear-button cursor-pointer">
+                            (click)="searchValue = ''; searchInput.value = ''" class="clear-button cursor-pointer">
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
-
-
                 </div>
             </mat-toolbar>
             <div class="content-wrapper">
@@ -45,7 +42,9 @@
                                         class="category-btn cursor-pointer"
                                         [class.selected]="selectedProduct === category.name"
                                         (click)="selectProduct(category.name)">
-                                        <mat-icon>{{ category.icon }}</mat-icon>
+                                        <mat-icon>
+                                            <img src="svg/{{ category.icon }}.svg" alt="{{ category.icon }}" class="pb-5" />
+                                        </mat-icon>
                                         <span>{{ category.name }}</span>
                                     </button>
                                 </div>
@@ -66,7 +65,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -85,12 +83,14 @@
                                         class="product-card cursor-pointer">
                                         <mat-card-content>
                                             <div class="product-info">
-                                                <div><img src="img/{{ product.icon }}.png" alt="{{ product.icon }}">
+                                                <div>
+                                                    <img src="img/{{ product.icon }}.png" alt="{{ product.icon }}" />
                                                 </div>
                                                 <span class="product-type">{{ product.type }}</span>
                                             </div>
                                             <div class="col-9">
-                                                <button mat-flat-button color="primary" class="generate-quote-btn cursor-pointer"
+                                                <button mat-flat-button color="primary"
+                                                    class="generate-quote-btn cursor-pointer"
                                                     (click)="generateQuote(product)">
                                                     Generate Quote
                                                 </button>
@@ -99,7 +99,6 @@
                                     </mat-card>
                                 </div>
                             </div>
-
 
                             <div class="smart-suggest">
                                 <div class="suggest-content">
@@ -127,7 +126,7 @@
                 <mat-card *ngFor="let quote of recentQuotes" class="quote-card">
                     <mat-card-content>
                         <div class="quote-header">
-                            <img src="img/user1.png" alt="Customer" class="customer-avatar">
+                            <img src="img/user1.png" alt="Customer" class="customer-avatar" />
                             <div class="customer-info">
                                 <h4>{{ quote.customerName }}</h4>
                                 <span class="customer-id">{{ quote.id }}</span>
@@ -182,7 +181,9 @@
                             <mat-icon>security</mat-icon>
                             <span>Life cover of</span>
                         </div>
-                        <h2 class="sum-assured-amount">{{ formatLargeNumber(sumAssured) }}</h2>
+                        <h2 class="sum-assured-amount">
+                            {{ formatLargeNumber(sumAssured) }}
+                        </h2>
 
                         <div class="coverage-details">
                             <div class="age-info">
@@ -255,13 +256,16 @@
                                         <div class="option-left">
                                             <div class="option-header">
                                                 <span class="years">Pay for {{ option.years }} years</span>
-                                                <span *ngIf="option.label" class="savings-label">{{ option.label
+                                                <span *ngIf="option.label" class="savings-label">{{
+                                                    option.label
                                                     }}</span>
                                             </div>
                                         </div>
                                         <div class="option-right">
                                             <div class="amounts">
-                                                <span class="amount">{{ formatCurrency(option.amount) }}</span>
+                                                <span class="amount">{{
+                                                    formatCurrency(option.amount)
+                                                    }}</span>
                                                 <span class="frequency">/Year</span>
                                                 <span class="total">Total: {{ formatCurrency(option.total) }}</span>
                                             </div>
@@ -307,8 +311,9 @@
                             <div class="story-content">
                                 <span class="story-title">Story</span>
                                 <p class="story-text">
-                                    By paying ₹50,000 annually for 10 years (₹5,00,000 total), you could receive around
-                                    ₹15-20 lakhs after 30 years, depending on the returns.
+                                    By paying ₹50,000 annually for 10 years (₹5,00,000 total), you
+                                    could receive around ₹15-20 lakhs after 30 years, depending on
+                                    the returns.
                                 </p>
                             </div>
                             <button mat-icon-button>

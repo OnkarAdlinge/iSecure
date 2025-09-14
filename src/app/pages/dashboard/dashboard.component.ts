@@ -49,11 +49,11 @@ export class DashboardComponent {
   ];
 
   productCategories = [
-    { name: 'Term', icon: 'shield' },
-    { name: 'PAR', icon: 'account_balance' },
-    { name: 'ULIP', icon: 'show_chart' },
-    { name: 'Annuity', icon: 'savings' },
-    { name: 'Non Par', icon: 'trending_up' }
+    { name: 'Term', icon: 'lifeinsurance' },
+    { name: 'PAR', icon: 'loans' },
+    { name: 'ULIP', icon: 'mututalfunds' },
+    { name: 'Annuity', icon: 'retirement' },
+    { name: 'Non Par', icon: 'nonpar' }
   ];
 
   recentQuotes: Quote[] = [

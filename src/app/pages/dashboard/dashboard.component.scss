@@ -158,10 +158,34 @@
           }
 
           &.selected {
-            background: linear-gradient(135deg, #1976d2, #1565c0);
+            background: linear-gradient(93.15deg, #37A0E8 0.5%, #215FD8 217.81%);
             color: white;
             border-color: transparent;
           }
+        }
+
+        .category-btn {
+          transition: all 0.3s ease;
+        }
+
+        .category-btn mat-icon img {
+          /* Default color: #005DAC */
+          filter: brightness(0) saturate(100%) invert(25%) sepia(85%) saturate(1654%) hue-rotate(201deg) brightness(97%) contrast(101%);
+          transition: filter 0.3s ease;
+          width: 24px;
+          /* Adjust as needed */
+          height: 24px;
+          /* Adjust as needed */
+        }
+
+        .category-btn.selected mat-icon img {
+          /* Selected color: White */
+          filter: brightness(0) saturate(100%) invert(100%);
+        }
+
+        /* Optional: Add hover effects */
+        .category-btn:hover:not(.selected) mat-icon img {
+          filter: brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(1654%) hue-rotate(201deg) brightness(107%) contrast(101%);
         }
       }
 
